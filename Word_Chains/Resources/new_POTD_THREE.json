@@ -1,0 +1,82 @@
+[
+  {
+    "date": "2025-06-10",
+    "chains": [
+      ["IVY", "ICE", "ACE", "ARE", "PRE"],
+      ["PRE", "PIE", "PIG", "RIG", "RUG"],
+      ["RUG", "RIG", "RIP", "SIP", "SIR"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["DAD", "LAD", "LAT", "OAT", "OPT"],
+      ["OPT", "OUT", "PUT", "POT", "POD"],
+      ["POD", "PAD", "PAY", "WAY", "WHY"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["TEA", "TEE", "BEE", "BYE", "AYE"],
+      ["AYE", "AGE", "AGO", "EGO"],
+      ["EGO", "AGO", "AGE", "AYE", "RYE", "RUE"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["SUM", "RUM", "RIM", "RID", "AID", "ADD"],
+      ["ADD", "AID", "LID", "LIE", "TIE", "THE"],
+      ["THE", "TIE", "DIE", "DID", "AID", "AND", "ANY"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["SKY", "SHY", "SHE", "SUB", "TUB"],
+      ["TUB", "TAB", "TAN", "PAN", "PAY", "PLY", "FLY", "FLU"],
+      ["FLU", "FLY", "PLY", "PAY"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["LIE", "LID", "MID", "MOD", "MOO"],
+      ["MOO", "BOO", "BOY", "SOY", "SKY", "SKI"],
+      ["SKI", "SKY", "SAY", "SAT", "SET", "YET", "YES"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["HEX", "SEX", "SIX", "SIN", "BIN", "BIB"],
+      ["BIB", "BIT", "BOT", "BOW", "WOW"],
+      ["WOW", "POW", "PEW", "PEE", "PRE", "ORE", "ODE"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["HUG", "HOG", "HOW", "SOW", "SOY"],
+      ["SOY", "TOY", "TOE", "DOE", "DYE"],
+      ["DYE", "AYE", "ACE", "ICE", "ICY"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["TRY", "DRY", "DAY", "MAY", "MAX"],
+      ["MAX", "MAT", "MET", "GET", "GEL", "EEL"],
+      ["EEL", "GEL", "GET", "BET", "BEE", "BYE"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["TOW", "MOW", "MOD", "MID"],
+      ["MID", "AID", "ADD", "ADS", "ABS"],
+      ["ABS", "ADS", "ADD", "AID", "BID", "BUD", "BUN", "NUN"]
+    ]
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "date": "2025-06-10",
+    "chains": [
+      ["LEAVE", "LEASE", "CEASE", "CHASE", "CHOSE"],
+      ["CHOSE", "CHORE", "SHORE", "SHORT", "SHOOT"],
+      ["SHOOT", "SHOOK", "SHOCK", "SHACK", "SHARK"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["TRACK", "CRACK", "CLACK", "CLANK", "PLANK"],
+      ["PLANK", "PLANE", "PLACE", "PEACE", "PEACH"],
+      ["PEACH", "BEACH", "BENCH", "BUNCH", "PUNCH"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["LOCAL", "FOCAL", "FECAL", "FETAL", "FATAL"],
+      ["FATAL", "NATAL", "NAVAL", "NAVEL", "NOVEL"],
+      ["HOVEL", "HOVER", "ROVER", "RIVER", "RIPER"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["PURER", "PUREE", "PURSE", "CURSE", "CURVE"],
+      ["CURVE", "CURVY", "CURRY", "CARRY", "HARRY"],
+      ["HARRY", "HARDY", "HANDY", "CANDY", "CANNY"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["MATCH", "BATCH", "BUTCH", "BUNCH", "BENCH"],
+      ["BENCH", "BEACH", "PEACH", "PEACE", "PLACE"],
+      ["PLATE", "SLATE", "STATE", "STALE", "SCALE"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["GLAZE", "GLADE", "GLIDE", "ELIDE", "ELITE"],
+      ["ELITE", "ELATE", "PLATE", "PLACE"],
+      ["PLACE", "PLANE", "PLANK", "BLANK", "BLINK"]
+    ]
+  },
+  {
+    "date": "2025-05-25",
+    "chains": [
+      ["GLAZE", "GLADE", "GLIDE", "ELIDE", "ELITE"],
+      ["ELITE", "ELATE", "PLATE", "PLACE"],
+      ["PLACE", "PLANE", "PLANK", "BLANK", "BLINK"]
+    ]
+  }
+]
