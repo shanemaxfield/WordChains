@@ -80,7 +80,7 @@ struct CelebrationCardView: View {
                                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                                     .fill(Color("BlueGreenDeep"))
                                     .matchedGeometryEffect(id: "showMinimumMorph", in: morphNamespace)
-                                    .frame(width: 160, height: 320)
+                                    .frame(width: 210, height: 340)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 20, style: .continuous)
                                             .stroke(Color("BlueGreenDeep"), lineWidth: 1.2)
@@ -89,14 +89,14 @@ struct CelebrationCardView: View {
                                 TabView(selection: $selectedChainIndex) {
                                     ForEach(groups.indices, id: \.self) { idx in
                                         FixedWidthContainer(
-                                            width: 140,
+                                            width: 150,
                                             showCardBackground: false,
                                             showBorder: false,
                                             backgroundColor: Color.clear,
                                             horizontalPadding: 0
                                         ) {
                                             let chain = groups[idx]
-                                            ZStack {
+                                            ZStack(alignment: .top) {
                                                 RoundedRectangle(cornerRadius: 16)
                                                     .stroke(Color("C_PureWhite").opacity(0.5), lineWidth: 2)
                                                 Group {
@@ -143,14 +143,15 @@ struct CelebrationCardView: View {
                                                     }
                                                 }
                                             }
+                                            .fixedSize(horizontal: false, vertical: true)
                                         }
                                         .padding(.vertical, 6)
                                         .tag(idx)
-                                        .padding(.horizontal, 20)
+                                        .frame(maxWidth: .infinity, alignment: .center)
                                     }
                                 }
-                                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                                .frame(width: 140, height: 300)
+                                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                                .frame(width: 190, height: 320)
                             }
                             Spacer()
                         }
