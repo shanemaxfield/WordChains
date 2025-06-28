@@ -57,9 +57,9 @@ struct EditableLetterTile: View {
     // MARK: - View Components
     private var tileBackground: some View {
         RoundedRectangle(cornerRadius: 20, style: .continuous)
-            .fill(Color("C_PureWhite"))
+            .fill(SemanticColors.backgroundMain)
             .shadow(
-                color: isFocused ? Color("C_WarmTeal").opacity(0.2) : Color("C_Charcoal").opacity(0.05),
+                color: isFocused ? SemanticColors.accentPrimary.opacity(0.2) : SemanticColors.textPrimary.opacity(0.05),
                 radius: isFocused ? 12 : 6,
                 x: 0,
                 y: isFocused ? 4 : 2
@@ -67,7 +67,7 @@ struct EditableLetterTile: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .stroke(
-                        isFocused ? Color("C_WarmTeal") : Color("DustyGray"),
+                        isFocused ? SemanticColors.accentPrimary : SemanticColors.textSecondary,
                         lineWidth: isFocused ? 2 : 1
                     )
             )
@@ -97,7 +97,7 @@ struct EditableLetterTile: View {
             .frame(width: 64, height: 64)
             .multilineTextAlignment(.center)
             .font(.system(size: 36, weight: .bold, design: .rounded))
-            .foregroundColor(isInvalid ? Color("C_SoftCoral") : Color("MutedNavy"))
+            .foregroundColor(isInvalid ? SemanticColors.error : SemanticColors.textTile)
             .scaleEffect(isInvalid && invalidLetterBounce ? 0.82 : 1.0)
             .animation(.spring(response: 0.28, dampingFraction: 0.45), value: isInvalid && invalidLetterBounce)
             .background(Color.clear)

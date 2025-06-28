@@ -4,8 +4,7 @@ struct ContentView: View {
     @StateObject var freeRoamState = GameState()
     @State private var dummyText = ""
     @FocusState private var dummyFocus: Bool
-    @State private var showWelcomeMessage = true
-    @State private var neverShowAgain = false
+    @State private var onboardingStep: Int = 0
 
     var body: some View {
         ZStack {
@@ -20,72 +19,17 @@ struct ContentView: View {
                 .focused($dummyFocus)
                 .opacity(0)
                 .frame(width: 0, height: 0)
-            
-            // Welcome Message Overlay
-            if showWelcomeMessage {
-                Color.black.opacity(0.4)
-                    .ignoresSafeArea()
-                    .transition(.opacity)
-
-                VStack(spacing: 32) {
-                    VStack(spacing: 8) {
-                        Text("Welcome to")
-                            .font(.system(size: 18, weight: .medium, design: .rounded))
-                            .foregroundColor(Color("C_PureWhite").opacity(0.8))
-
-                        Text("Word Chains")
-                            .font(.system(size: 34, weight: .bold, design: .rounded))
-                            .foregroundColor(Color("C_PureWhite"))
-                    }
-
-                    VStack(spacing: 8) {
-                        Text("Start with the first word.")
-                        Text("Change one letter at a time.")
-                        Text("Reach the target word in the fewest steps.")
-                    }
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .foregroundColor(Color("C_PureWhite").opacity(0.9))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 28)
-
-                    Toggle(isOn: $neverShowAgain) {
-                        Text("Don't show this again")
-                            .font(.system(size: 15, weight: .medium, design: .rounded))
-                            .foregroundColor(Color("C_PureWhite").opacity(0.85))
-                    }
-                    .toggleStyle(iOSCheckboxToggleStyle())
-                    .padding(.top, 8)
-
-                    Button(action: {
-                        withAnimation(.easeOut(duration: 0.3)) {
-                            showWelcomeMessage = false
-                            if neverShowAgain {
-                                UserDefaults.standard.set(true, forKey: "hideWelcomeMessage")
-                            }
-                        }
-                    }) {
-                        Text("Start Playing")
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .foregroundColor(Color("C_PureWhite"))
-                            .padding(.vertical, 14)
-                            .padding(.horizontal, 48)
-                            .background(
-                                Capsule().fill(Color("C_WarmTeal"))
-                            )
-                            .shadow(color: Color("C_WarmTeal").opacity(0.3), radius: 8, x: 0, y: 4)
-                    }
-                }
-                .padding(32)
-                .background(
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(Color("C_Charcoal").opacity(0.96))
-                )
-                .padding(.horizontal, 24)
-                .transition(.scale.combined(with: .opacity))
-            }
-
-
         }
+        .overlay(
+            OnboardingOverlay(
+                isShowing: $freeRoamState.showOnboarding,
+                currentStep: $onboardingStep,
+                steps: OnboardingData.tutorialSteps,
+                onComplete: {
+                    freeRoamState.completeOnboarding()
+                }
+            )
+        )
         .onAppear {
             print("🧪 .onAppear triggered — loading data")
             WordDataManager.shared.loadData()
@@ -101,25 +45,11 @@ struct ContentView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 dummyFocus = false
             }
+            
+            // Check if we should show onboarding
+            freeRoamState.checkAndShowOnboarding()
         }
     }
-    struct iOSCheckboxToggleStyle: ToggleStyle {
-        func makeBody(configuration: Configuration) -> some View {
-            Button(action: {
-                configuration.isOn.toggle()
-            }) {
-                HStack {
-                    Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(Color("C_WarmTeal"))
-                    configuration.label
-                }
-            }
-            .buttonStyle(PlainButtonStyle())
-        }
-    }
-
 
     /// Generates and prints shortest chains between consecutive anchor word pairs
     func generateMultiChainPath(words: [String], logic: WordChainGameLogic) {

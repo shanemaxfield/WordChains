@@ -12,6 +12,7 @@ struct FreeRoamView: View {
     @State private var celebrationStartTime: Date = Date()
     @State private var showCelebrationCard: Bool = false
     @State private var showMinimumChain: Bool = false
+    @State private var onboardingStep: Int = 0
     @AppStorage("freeroam_hintActiveByLength") private var hintActiveByLengthData: Data = Data()
     @AppStorage("freeroam_hintDistanceByLength") private var hintDistanceByLengthData: Data = Data()
     @AppStorage("freeroam_userWordByLength") private var userWordByLengthData: Data = Data()
@@ -113,6 +114,16 @@ struct FreeRoamView: View {
         }
         .navigationBarHidden(true)
         .animation(.spring(response: 1.2, dampingFraction: 0.85), value: showCelebrationCard)
+        .overlay(
+            OnboardingOverlay(
+                isShowing: $state.showOnboarding,
+                currentStep: $onboardingStep,
+                steps: OnboardingData.tutorialSteps,
+                onComplete: {
+                    state.completeOnboarding()
+                }
+            )
+        )
         .onAppear {
             // Simply restore the last state
             let savedStates = (try? JSONDecoder().decode([Int: PersistedWordChainState].self, from: statesByLengthData)) ?? [:]
@@ -159,10 +170,10 @@ struct FreeRoamView: View {
             } else {
                 isCelebrating = true
                 celebrationStartTime = Date()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     showCelebrationCard = true
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     isCelebrating = false
                 }
                 hintActiveByLength[state.currentWordLength] = false
@@ -225,6 +236,17 @@ struct FreeRoamView: View {
                         .contentShape(Rectangle())
                 }
                 Spacer()
+                
+                // Help button
+                Button(action: {
+                    state.showOnboarding = true
+                }) {
+                    Image(systemName: "questionmark.circle")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(Color("C_Charcoal"))
+                        .frame(width: 54, height: 54)
+                        .contentShape(Rectangle())
+                }
             }
             .padding(.bottom, -10)
             Text("Free Roam")

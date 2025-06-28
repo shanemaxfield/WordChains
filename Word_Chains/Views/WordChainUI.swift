@@ -2,6 +2,7 @@ import SwiftUI
 
 struct WordChainUI: View {
     @StateObject private var gameState = GameState()
+    @State private var onboardingStep: Int = 0
 
     var body: some View {
         ZStack {
@@ -19,6 +20,20 @@ struct WordChainUI: View {
             GameControls()
         }
         .environmentObject(gameState)
+        .overlay(
+            OnboardingOverlay(
+                isShowing: $gameState.showOnboarding,
+                currentStep: $onboardingStep,
+                steps: OnboardingData.tutorialSteps,
+                onComplete: {
+                    gameState.completeOnboarding()
+                }
+            )
+        )
+        .onAppear {
+            // Check if we should show onboarding
+            gameState.checkAndShowOnboarding()
+        }
     }
 }
 

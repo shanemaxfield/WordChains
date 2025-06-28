@@ -33,6 +33,7 @@ class GameState: ObservableObject {
     @Published private(set) var currentDistanceToTargetByLength: [Int: Int?] = [:]
     @Published private(set) var isHintActiveByLength: [Int: Bool] = [:]
     @Published private(set) var isSearchingForChain: [Int: Bool] = [:]
+    @Published var showOnboarding: Bool = false
     
     // MARK: - Constants
     let availableLengths = [3, 4, 5]
@@ -40,6 +41,49 @@ class GameState: ObservableObject {
     
     // MARK: - Private Properties
     private var puzzleGenerationTasks: [Int: Task<Void, Never>] = [:]
+    
+    // MARK: - Initialization
+    init() {
+        loadOnboardingState()
+    }
+    
+    // MARK: - Onboarding Methods
+    func checkAndShowOnboarding() {
+        if !hasSeenOnboarding {
+            showOnboarding = true
+        }
+    }
+    
+    func completeOnboarding() {
+        hasSeenOnboarding = true
+        showOnboarding = false
+        saveOnboardingState()
+    }
+    
+    // For testing purposes - reset onboarding state
+    func resetOnboarding() {
+        hasSeenOnboarding = false
+        showOnboarding = false
+        saveOnboardingState()
+    }
+    
+    private var hasSeenOnboarding: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "hasSeenOnboarding")
+        }
+    }
+    
+    private func loadOnboardingState() {
+        // Load onboarding state from UserDefaults
+        hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
+    }
+    
+    private func saveOnboardingState() {
+        UserDefaults.standard.set(hasSeenOnboarding, forKey: "hasSeenOnboarding")
+    }
     
     // MARK: - Public Methods
     func setWordLength(_ length: Int) {

@@ -110,11 +110,27 @@ struct PuzzleOfTheDayView: View {
 
     private var mainContent: some View {
         VStack(spacing: 6) {
+            // Tutorial button above title
+            HStack {
+                Spacer()
+                Button(action: {
+                    freeRoamState.showOnboarding = true
+                }) {
+                    Image(systemName: "questionmark.circle")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(Color("C_Charcoal"))
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            .padding(.top, -30)
+            .padding(.horizontal, 20)
+            
+            // Title
             Text("Puzzle of the Day")
                 .font(.system(size: 34, weight: .bold, design: .rounded))
                 .foregroundColor(Color("MutedNavy"))
-                .padding(.top, 12)
                 .padding(.bottom, 24)
+            
             // Capsule Length Selector
             HStack(spacing: 8) {
                 ForEach(lengthOptions, id: \.self) { option in
@@ -515,10 +531,10 @@ struct PuzzleOfTheDayView: View {
     private func showFinalCelebration() {
         isCelebrating = true
         celebrationStartTime = Date()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             showCelebrationCard = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             isCelebrating = false
         }
     }
@@ -640,7 +656,7 @@ struct CelebrationTileEffect: ViewModifier {
                         }
                         // Return to normal after 0.5s
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            withAnimation(.easeInOut(duration: 0.3)) {
+                            withAnimation(.easeInOut(duration: 0.15)) {
                                 animate = false
                             }
                         }
@@ -655,7 +671,7 @@ struct CelebrationTileEffect: ViewModifier {
                             animate = true
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            withAnimation(.easeInOut(duration: 0.3)) {
+                            withAnimation(.easeInOut(duration: 0.15)) {
                                 animate = false
                             }
                         }

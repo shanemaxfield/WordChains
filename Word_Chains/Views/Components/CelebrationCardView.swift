@@ -206,7 +206,7 @@ struct CelebrationCardView: View {
                                     }
                                 }
                             }
-                            // Second row: Retry, Show Minimum, Free Roam buttons
+                            // Second row: Retry, Show Minimum, Next Puzzle, Free Roam buttons
                             HStack(spacing: 12) {
                                 Button(action: onRetry) {
                                     Image(systemName: "arrow.counterclockwise")
@@ -240,6 +240,21 @@ struct CelebrationCardView: View {
                                     }
                                 }
                                 .buttonStyle(PlainButtonStyle())
+                                // Next Puzzle button (if onNext is provided)
+                                if let onNext = onNext {
+                                    Button(action: onNext) {
+                                        Image(systemName: "arrow.right")
+                                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                                            .foregroundColor(.white)
+                                            .frame(width: 70, height: 40)
+                                            .background(Capsule().fill(Color("C_WarmTeal")))
+                                            .overlay(
+                                                Capsule().stroke(Color("C_WarmTeal"), lineWidth: 1.2)
+                                            )
+                                            .shadow(color: Color("C_WarmTeal").opacity(0.10), radius: 4, x: 0, y: 2)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
                                 if showFreeRoamButton, let onFreeRoam = onFreeRoam {
                                     Button(action: onFreeRoam) {
                                         Image(systemName: "arrow.right")

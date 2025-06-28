@@ -15,6 +15,37 @@ struct GameControls: View {
     var body: some View {
         VStack(spacing: 0) {
             Spacer(minLength: 36)
+            
+            // Help button
+            HStack {
+                Spacer()
+                
+                #if DEBUG
+                // Debug button to reset onboarding (only in debug builds)
+                Button(action: {
+                    gameState.resetOnboarding()
+                    gameState.showOnboarding = true
+                }) {
+                    Image(systemName: "arrow.clockwise")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(Color("C_Charcoal").opacity(0.6))
+                }
+                .buttonStyle(PlainButtonStyle())
+                .padding(.trailing, 8)
+                #endif
+                
+                Button(action: {
+                    gameState.showOnboarding = true
+                }) {
+                    Image(systemName: "questionmark.circle")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(Color("C_Charcoal"))
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 8)
+            
             lengthSelector
             wordChainGrid
             resetButton
